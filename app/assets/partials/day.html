@@ -2,7 +2,7 @@
 	<div class="container">
 	
 		<h1>
-			Day 1
+			Day {{dayNo}}
 		</h1>
 		<ul class="unstyled">
 			
@@ -24,11 +24,11 @@
 		</ul>
 		<div class="modal" ng-class="{true: 'show', false: 'hide'}[showModal]">
 			<div class="modal-header">
-				<button type="button" class="close" >&times;</button>
+				<button type="button" class="close" ng-click="HideModal()">&times;</button>
 				<h4>Movie title</h4>
 			</div>
 			<div class="modal-body">
-				<iframe width="640" height="360" src="http://www.youtube.com/embed/vQbiAK_3HcE" frameborder="0" allowfullscreen></iframe>
+				<iframe width="640" height="360" src="http://www.youtube.com/embed/{{yt}}" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</div>

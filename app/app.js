@@ -42,8 +42,17 @@ angular.module('app', [
 	function($rootScope, $location, $http, $compile, data) {
 
 		
+		$rootScope.program = data.GetTiffProgram();		
+		$rootScope.$watch('program.readyState', function () {
+			
+			if ($rootScope.program.readyState == 'complete') {
 
+				$rootScope.fullProgram = $rootScope.program.content;
+				
+			}
+		})
 
+		
 		// safeApply to solve issues with calling $apply too early
 		$rootScope.SafeApply = function(fn) {
 			var phase = this.$root.$$phase;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>New App</title>
+	<title>Program TIFF</title>
 	<meta name="author" content="NewApp">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -47,7 +47,17 @@
 		</div>
 	</div>
 	
-	<div ng-view></div>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul class="nav nav-tabs nav-stacked">
+					<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}}</a></li>
+				</ul>
+			</div>
+			<div ng-view class="span8"></div>
+		</div>
+	</div>
+	
 	
 	<footer class="footer">
 		<div class="container">

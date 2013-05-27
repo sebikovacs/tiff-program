@@ -20,9 +20,9 @@ angular.module('app').factory('data', [
 
 				var success = function (result) {
 					
-					results.content = result.query.results.div.div;
+					results.content = result;
 					
-					var i = 0;
+					var i = 1;
 					angular.forEach(results.content, function(item){
 						item.id = i;
 						i++;
@@ -34,7 +34,7 @@ angular.module('app').factory('data', [
 				
 				$.ajax({
 				    dataType: "json",
-				    url: tiffprogram,
+				    url: 'tiff-program.json',
 				    success: success,
 				    error: function(response) {
 				        
