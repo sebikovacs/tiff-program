@@ -73,7 +73,7 @@ input {
 }
 
 .loading-app:before {
-	@extend .loader-overlay;
+	@extend .loader-overlay
 }
 
 .loading-app:after {
@@ -81,3 +81,14 @@ input {
 }
 
 
+.movies {
+	min-width: 1800px;
+	td {
+		vertical-align: top;
+	}
+}
+
+.modal {
+	width: 700px;
+	height: 450px;
+}

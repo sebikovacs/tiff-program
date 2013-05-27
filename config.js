@@ -18,12 +18,15 @@ exports.config = {
 	
 		javascripts: {
 			defaultExtension: 'js',
-			joinTo: 'javascripts/app.js',
+			joinTo: {
+				'javascripts/app.js': /app|vendor/,
+			},
 			order: {
 				before: [
 					'vendor/jquery-1.9.1.js',
 					'vendor/jquery-ui-1.10.2.custom.js',
 					'vendor/angular.js',
+					'vendor/angular-resource.js',
 					'vendor/angular-ui.js',
 					
 					'vendor/lawnchair.js',

@@ -18,9 +18,9 @@ angular.module('app', [
 			controller: 'Dashboard'
 		});
 
-		$routeProvider.when('/first-page', {
-			templateUrl: 'partials/first-page.html',
-			controller: 'FirstPage'
+		$routeProvider.when('/day/:dayId', {
+			templateUrl: 'partials/day.html',
+			controller: 'Day'
 		});
 
 		$routeProvider.when('/second-page', {

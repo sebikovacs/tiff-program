@@ -1,8 +1,8 @@
 <div class="container">
 	<h1>Dashboard</h1>
-	{{fullProgram}}
+	
 	<ul>
-		
+		<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}}</a></li>
 		
 	</ul>
 </div>

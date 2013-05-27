@@ -21,8 +21,15 @@ angular.module('app').factory('data', [
 				var success = function (result) {
 					
 					results.content = result.query.results.div.div;
+					
+					var i = 0;
+					angular.forEach(results.content, function(item){
+						item.id = i;
+						i++;
+					})
+					
 					results.readyState = 'complete';
-
+					$rootScope.$apply();
 				};
 				
 				$.ajax({
