@@ -1,0 +1,49 @@
+/*
+ * Utils
+ */
+
+@import "compass/css3";
+
+/* Mixins */
+
+@mixin breakpoint($point) {
+	@if $point == papa-bear {
+		@media (min-width: 978px) { @content; }
+	}
+	@else if $point == mama-bear {
+		@media (min-width: 767px) { @content; }
+	}
+	@else if $point == baby-bear {
+		@media (min-width: 650px)  { @content; }
+	}
+}
+
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+
+	@-moz-keyframes $animation-name {
+		@content;
+	}
+
+	@-ms-keyframes $animation-name {
+		@content;
+	}
+
+	@-o-keyframes $animation-name {
+		@content;
+	}
+
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@mixin animation($animation-name, $time: 5s, $function: ease, $delay: 0, $count: 1, $direction: normal, $fill-mode: forwards) {
+	animation: $animation-name $time $function $delay $count $direction $fill-mode;
+	-o-animation: $animation-name $time $function $delay $count $direction $fill-mode;
+	-ms-animation: $animation-name $time $function $delay $count $direction $fill-mode;
+	-moz-animation: $animation-name $time $function $delay $count $direction $fill-mode;
+	-webkit-animation: $animation-name $time $function $delay $count $direction $fill-mode;
+}

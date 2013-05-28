@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Program TIFF</title>
+	<meta name="author" content="NewApp">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	
+	<link rel="stylesheet" href="stylesheets/app.css">
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="stylesheets/ie.css">
+	<![endif]-->
+	
+    <script>
+		window.brunch = window.brunch || {};
+		window.brunch['auto-reload'] = {enabled: true};
+	</script>
+</head>
+<body class="loading-app">
+	
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="navbar-inner">
+			
+			<div class="container">
+
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				
+				<a class="brand" href="#">Program Tiff</a>
+				
+				<div class="nav-collapse collapse navbar-responsive-collapse">
+					<ul class="nav pull-right">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><a href="#/first-page">First Page</a></li>
+						<li><a href="#/second-page">Second Page</a></li>
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul class="nav nav-tabs nav-stacked">
+					<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}}</a></li>
+				</ul>
+			</div>
+			<div ng-view class="span8"></div>
+		</div>
+	</div>
+	
+	
+	<footer class="footer">
+		<div class="container">
+			<div class="legal pull-left">
+				© 2013 Program Tiff. All rights reserved.
+			</div>
+			
+			<ul class="footer-links pull-right">
+				<li><a href="#/">Dashboard</a></li>
+				<li><a href="#/first-page">First Page</a></li>
+				<li><a href="#/second-page">Second Page</a></li>
+			</ul>
+		</div>
+	</footer>
+	
+	<script src="javascripts/app.js"></script>
+	
+	<!-- segment.io analytics -->
+	<script type="text/javascript">
+		var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},i=["identify","track","trackLink","trackForm","trackClick","trackSubmit","pageview","ab","alias","ready"];for(var s=0;s<i.length;s++)analytics[i[s]]=r(i[s])};
+	analytics.load("24tzuadtmb");
+	</script>
+	
+	<!--[if lte IE 8 ]>
+		<script type="text/javascript" 
+   src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+		<script>
+			window.attachEvent("onload", function() {
+				CFInstall.check({
+					mode: "inline", // the default
+					node: "prompt"
+				});
+			});
+		</script>
+	<![endif]-->
+	
+</body>
+</html>
