@@ -78,16 +78,24 @@ angular.module('app').controller('Day', [
 
 				}
 
-				$rootScope.favorites = [];
-				$rootScope.showDefault = true;
+				$rootScope.favorites = store.get('favmovies') || [];
+				
+				if(store.get('favmovies').length > 0) {
+					$rootScope.showDefault = false;
+				} else {
+					$rootScope.showDefault = true;
+				}
 
 				$scope.AddFavorite = function (model) {
 					
 					// add movie to list
 					$rootScope.favorites.push(model);
-					$rootScope.showDefault = false;
 
-					
+					//save movie list to localstorage
+					store.set('favmovies', $rootScope.favorites);
+
+					//change header badge color
+					$rootScope.showDefault = false;
 
 				}
 
