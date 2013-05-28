@@ -40,11 +40,39 @@ angular.module('app').controller('Day', [
 
 				})
 				
+				var spreadUrl = 'https://docs.google.com/spreadsheet/pub?key=0AhwOls2FTsDFdHJ6TDJFbUV3RjdTRG5FRmpMUFc0RGc&output=html'
+				var key = '0AhwOls2FTsDFdHJ6TDJFbUV3RjdTRG5FRmpMUFc0RGc';
+				
+				$scope.showInfo = function (data){
+					
+					$scope.trailers = data;
+					
+				}
+				
+				Tabletop.init({
+					key: key,
+					callback: $scope.showInfo,
+					simpleSheet: true
+				})
+				
+				
 
 				$scope.ShowTrailer = function (model) {
-					$scope.showModal = true;
-					$scope.yt = model.td[5].yt;
+					var title = model.td[1].a.content;
 					
+					var trailer = _.where($scope.trailers, {titlero: title});
+					var trailertiff = '8Bsa8_IKa3o';
+					
+					if (trailer.length > 0){
+						$scope.yt = trailer[0].video;
+					} else {
+						$scope.yt = trailertiff;
+					}
+					
+					
+					
+					$scope.showModal = true;
+
 				}
 
 				$scope.HideModal = function () {

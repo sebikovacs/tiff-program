@@ -28,7 +28,7 @@ exports.config = {
 					'vendor/angular.js',
 					'vendor/angular-resource.js',
 					'vendor/angular-ui.js',
-					
+					'vendor/tabletop.js',
 					'vendor/lawnchair.js',
 					'vendor/lawnchair-adapter-indexed-db.js',
 					'vendor/lawnchair-adapter-dom.js',
