@@ -8654,3 +8654,11 @@ input {
 .modal {
   width: 700px;
   height: 450px; }
+
+@media -sass-debug-info{filename{}line{font-family:\0000396}}
+.sticky-wrapper {
+  position: relative; }
+
+@media -sass-debug-info{filename{}line{font-family:\00003100}}
+#sticker {
+  right: 95px; }

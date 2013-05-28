@@ -30,15 +30,29 @@
 					<span class="icon-bar"></span>
 				</a>
 				
-				<a class="brand" href="#">Program Tiff</a>
+				<a class="brand" href="#">Program neoficial TIFF 2013</a>
 				
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<ul class="nav pull-right">
-						<li>
-							<a href="#">Dashboard</a>
+						
+						<li><a href="#/first-page">Despre proiect</a></li>
+						<li><a href="#/second-page">Contact</a></li>
+						
+						<li class="dropdown">
+						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						      Filme faine 
+						      <span ng-show='showDefault' class="badge" >
+						      	{{favorites.length}}
+						      </span>
+						      <span ng-hide='showDefault' class="badge badge-warning" >
+						      	{{favorites.length}}
+						      </span>
+						      <b class="caret"></b>
+						    </a>
+						    <ul class="dropdown-menu">
+						      <li ng-repeat="movie in favorites"><a href="">{{movie.td[1].a.content}}</a></li>
+						    </ul>
 						</li>
-						<li><a href="#/first-page">First Page</a></li>
-						<li><a href="#/second-page">Second Page</a></li>
 					</ul>
 				</div>
 				
@@ -62,14 +76,8 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="legal pull-left">
-				© 2013 Program Tiff. All rights reserved.
+				© 2013 TIFF. All rights reserved.
 			</div>
-			
-			<ul class="footer-links pull-right">
-				<li><a href="#/">Dashboard</a></li>
-				<li><a href="#/first-page">First Page</a></li>
-				<li><a href="#/second-page">Second Page</a></li>
-			</ul>
 		</div>
 	</footer>
 	

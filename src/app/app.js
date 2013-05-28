@@ -25,11 +25,12 @@ angular.module('app', [
 			controller: 'Day'
 		});
 
-		$routeProvider.when('/second-page', {
-			templateUrl: 'partials/second-page.html',
-			controller: 'SecondPage'
+		$routeProvider.when('/day/:dayId/:movieId', {
+			templateUrl: 'partials/day.html',
+			controller: 'Day'
 		});
-		
+
+				
 		$routeProvider.otherwise({
 			redirectTo: '/day/'+currentDay
 		});
@@ -50,7 +51,6 @@ angular.module('app', [
 			if ($rootScope.program.readyState == 'complete') {
 
 				$rootScope.fullProgram = $rootScope.program.content;
-				
 			}
 		})
 

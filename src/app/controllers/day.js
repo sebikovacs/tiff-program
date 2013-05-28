@@ -57,11 +57,10 @@ angular.module('app').controller('Day', [
 				
 				
 
-				$scope.ShowTrailer = function (model) {
+				$scope.ShowTrailer = function (model, index) {
+					$scope.bigModel = model;
 					$scope.model = {};
 					$scope.model.title = model.td[1].a.content;
-
-
 
 					var title = model.td[1].a.content;
 					
@@ -75,16 +74,26 @@ angular.module('app').controller('Day', [
 					}
 					
 					
+					$scope.showModal = true;
+
+				}
+
+				$rootScope.favorites = [];
+				$rootScope.showDefault = true;
+
+				$scope.AddFavorite = function (model) {
 					
-					//$scope.showModal = true;
+					// add movie to list
+					$rootScope.favorites.push(model);
+					$rootScope.showDefault = false;
+
+					
 
 				}
 
-				$scope.HideModal = function () {
-					$scope.showModal = false;
-					var trailertiff = '8Bsa8_IKa3o';
-					$scope.yt = trailertiff;
-				}
+
+
+				$("#sticker").sticky({topSpacing:0});
 			}
 		})
 	}
