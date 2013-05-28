@@ -35535,20 +35535,25 @@ angular.module('app').controller('Day', [
 				
 
 				$scope.ShowTrailer = function (model) {
+					$scope.model = {};
+					$scope.model.title = model.td[1].a.content;
+
+
+
 					var title = model.td[1].a.content;
 					
 					var trailer = _.where($scope.trailers, {titlero: title});
 					var trailertiff = '8Bsa8_IKa3o';
 					
 					if (trailer.length > 0){
-						$scope.yt = trailer[0].video;
+						$scope.model.video = trailer[0].video;
 					} else {
-						$scope.yt = trailertiff;
+						$scope.model.video = trailertiff;
 					}
 					
 					
 					
-					$scope.showModal = true;
+					//$scope.showModal = true;
 
 				}
 

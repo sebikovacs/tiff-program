@@ -47,14 +47,14 @@
 		</div>
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span2">
 				<ul class="nav nav-tabs nav-stacked">
 					<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}}</a></li>
 				</ul>
 			</div>
-			<div ng-view class="span8"></div>
+			<div ng-view class="span10"></div>
 		</div>
 	</div>
 	
