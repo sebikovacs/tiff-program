@@ -35898,7 +35898,7 @@ angular.module('app').controller('Day', [
 				$rootScope.favorites = store.get('favmovies') || [];
 				
 				//change color of the badge in the header if user has movies
-				if(store.get('favmovies').length > 0) {
+				if($rootScope.favorites) {
 					$rootScope.showDefault = false;
 				} else {
 					$rootScope.showDefault = true;
