@@ -100,3 +100,12 @@ input {
 #sticker {
 	right: 95px;
 }
+
+.article {
+	position: relative;
+	.small-loader {
+		position: absolute;
+		top: 150px;
+		left: 250px;
+	}
+}

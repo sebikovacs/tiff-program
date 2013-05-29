@@ -19,11 +19,11 @@ angular.module('app').controller('Day', [
 
 				$scope.fullProgram = $scope.program.content;
 
-
 				$scope.dayNo = $routeParams.dayId;
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
-				console.log($scope.dayProgramTables)
+
+				
 				$scope.dayLocationsRaw = $scope.dayProgramRaw[0].div[1].div;
 				$scope.dayLocations = [];
 
@@ -41,16 +41,31 @@ angular.module('app').controller('Day', [
 						item.tbody.tr = new Array(item.tbody.tr);
 					}
 
+					angular.forEach(item.tbody.tr, function (obj) {
+						obj.dayId = $routeParams.dayId;
+					});
+
 				})
+
+
 				
 
 				//spreadsheet key
 				var key = '0AhwOls2FTsDFdHJ6TDJFbUV3RjdTRG5FRmpMUFc0RGc';
 				
 				//get trailers array from google drive
+				$scope.trailers = {
+					content: [],
+					readyState: 'loading'
+				}
+				
 				$scope.showInfo = function (data){
 					
-					$scope.trailers = data;
+					$scope.trailers = {
+						content: data,
+						readyState: 'complete'
+					};
+					$scope.$apply();
 					
 				}
 				
@@ -58,11 +73,12 @@ angular.module('app').controller('Day', [
 					key: key,
 					callback: $scope.showInfo,
 					simpleSheet: true
-				})
+				});
 				
+
 				
 				//Methods
-				$scope.ShowTrailer = function (model, index) {
+				$scope.ShowTrailer = function (model) {
 					
 					//the model from tiff.ro
 					$scope.bigModel = model;
@@ -73,8 +89,38 @@ angular.module('app').controller('Day', [
 
 					//find the movie trailer in the google drive array
 					var title = model.td[1].a.content;
-					var trailer = _.where($scope.trailers, {titlero: title});
+					var trailer = _.where($scope.trailers.content, {titlero: title});
+					
+					if ($scope.trailers.content.length == 0) {
+						//hide video and show loader
+						$scope.showLoader = true;
+						$scope.showVideo = false;
 
+						$scope.$watch('trailers.readyState', function () {
+							if ($scope.trailers.readyState == 'complete') {
+								var trailer = _.where($scope.trailers.content, {titlero: title});
+
+								//set default trailer to tiff 2013 clip
+								var trailertiff = '8Bsa8_IKa3o';
+								
+								if (trailer.length > 0){
+									$scope.model.video = trailer[0].video;
+								} else {
+									$scope.model.video = trailertiff;
+								}
+
+								$scope.showLoader = false;
+								$scope.showVideo = true;
+
+							}
+						});
+					} else {
+						var trailer = _.where($scope.trailers.content, {titlero: title});
+					}
+
+					
+					
+					
 					//set default trailer to tiff 2013 clip
 					var trailertiff = '8Bsa8_IKa3o';
 					
@@ -89,6 +135,21 @@ angular.module('app').controller('Day', [
 
 				}
 
+				if ($routeParams.movieTitle) {
+					
+					$routeParams.movieTitle;
+					
+					
+					//find movie
+					angular.forEach($scope.dayProgramTables, function (item) {
+						angular.forEach(item.tbody.tr, function (obj) {
+							if ($routeParams.movieTitle == $filter('movieTitle')(obj.td[1].a.href)){
+								$scope.ShowTrailer(obj);
+							}
+						})
+					});
+				};
+
 				//check if user has favorites in store
 				$rootScope.favorites = store.get('favmovies') || [];
 				
@@ -99,8 +160,7 @@ angular.module('app').controller('Day', [
 					$rootScope.showDefault = true;
 				}
 
-				console.log($rootScope.favorites)
-
+				
 				//save a list of favorite movies
 				$scope.AddFavorite = function (model) {
 					

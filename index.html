@@ -50,7 +50,8 @@
 						      <b class="caret"></b>
 						    </a>
 						    <ul class="dropdown-menu">
-						      <li ng-repeat="movie in favorites"><a href="">{{movie.td[1].a.content}}</a></li>
+						      <li ng-repeat="movie in favorites">
+						      	<a href="#/day/{{movie.dayId}}/{{movie.td[1].a.href | movieTitle}}">{{movie.td[1].a.content}}</a></li>
 						    </ul>
 						</li>
 					</ul>

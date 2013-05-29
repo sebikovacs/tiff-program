@@ -8662,3 +8662,12 @@ input {
 @media -sass-debug-info{filename{}line{font-family:\00003100}}
 #sticker {
   right: 95px; }
+
+@media -sass-debug-info{filename{}line{font-family:\00003104}}
+.article {
+  position: relative; }
+@media -sass-debug-info{filename{}line{font-family:\00003106}}
+  .article .small-loader, .article .loading-app:after {
+    position: absolute;
+    top: 150px;
+    left: 250px; }

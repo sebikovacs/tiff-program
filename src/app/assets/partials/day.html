@@ -19,11 +19,15 @@
 					</li>
 				</ul>
 			</div>
-			<div class="span8" ng-class="{true: 'show', false: 'hide'}[showModal]">
+			<div class="span8 article" ng-class="{true: 'show', false: 'hide'}[showModal]">
+				
+				<div class="small-loader" ng-class="{true: 'show', false: 'hide'}[showLoader]"></div>
+
 				<div id="sticker">
+
 					<h3>{{model.title}} <small><a href="" ng-click="AddFavorite(bigModel)">film fain</a></small></h3>
 					
-					<div>
+					<div class="video" ng-class="{true: 'show', false: 'hide'}[showVideo]">
 						<iframe width="640" height="360" src="http://www.youtube.com/embed/{{model.video}}" frameborder="0" allowfullscreen></iframe>
 					</div>
 				</div>
