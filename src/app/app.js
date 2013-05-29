@@ -25,7 +25,7 @@ angular.module('app', [
 			controller: 'Day'
 		});
 
-		$routeProvider.when('/day/:dayId/:movieId', {
+		$routeProvider.when('/day/:dayId/:movieTitle', {
 			templateUrl: 'partials/day.html',
 			controller: 'Day'
 		});

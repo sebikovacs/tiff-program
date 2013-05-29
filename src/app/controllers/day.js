@@ -23,15 +23,18 @@ angular.module('app').controller('Day', [
 				$scope.dayNo = $routeParams.dayId;
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
+				console.log($scope.dayProgramTables)
 				$scope.dayLocationsRaw = $scope.dayProgramRaw[0].div[1].div;
 				$scope.dayLocations = [];
 
+				//get the event locations
 				angular.forEach($scope.dayLocationsRaw, function (item) {
 					if (item.class == 'locatie'){
 						$scope.dayLocations.push(item)
 					}
 				});
 				
+				//make sure the tr is an array
 				angular.forEach($scope.dayProgramTables, function(item){
 					
 					if (item.tbody.tr.length == undefined) {
@@ -40,9 +43,11 @@ angular.module('app').controller('Day', [
 
 				})
 				
-				var spreadUrl = 'https://docs.google.com/spreadsheet/pub?key=0AhwOls2FTsDFdHJ6TDJFbUV3RjdTRG5FRmpMUFc0RGc&output=html'
+
+				//spreadsheet key
 				var key = '0AhwOls2FTsDFdHJ6TDJFbUV3RjdTRG5FRmpMUFc0RGc';
 				
+				//get trailers array from google drive
 				$scope.showInfo = function (data){
 					
 					$scope.trailers = data;
@@ -56,15 +61,21 @@ angular.module('app').controller('Day', [
 				})
 				
 				
-
+				//Methods
 				$scope.ShowTrailer = function (model, index) {
+					
+					//the model from tiff.ro
 					$scope.bigModel = model;
+					
+					//local model
 					$scope.model = {};
 					$scope.model.title = model.td[1].a.content;
 
+					//find the movie trailer in the google drive array
 					var title = model.td[1].a.content;
-					
 					var trailer = _.where($scope.trailers, {titlero: title});
+
+					//set default trailer to tiff 2013 clip
 					var trailertiff = '8Bsa8_IKa3o';
 					
 					if (trailer.length > 0){
@@ -73,19 +84,24 @@ angular.module('app').controller('Day', [
 						$scope.model.video = trailertiff;
 					}
 					
-					
+					//show trailer div
 					$scope.showModal = true;
 
 				}
 
+				//check if user has favorites in store
 				$rootScope.favorites = store.get('favmovies') || [];
 				
+				//change color of the badge in the header if user has movies
 				if(store.get('favmovies').length > 0) {
 					$rootScope.showDefault = false;
 				} else {
 					$rootScope.showDefault = true;
 				}
 
+				console.log($rootScope.favorites)
+
+				//save a list of favorite movies
 				$scope.AddFavorite = function (model) {
 					
 					// add movie to list
@@ -99,8 +115,7 @@ angular.module('app').controller('Day', [
 
 				}
 
-
-
+				// make the right column stick to header
 				$("#sticker").sticky({topSpacing:0});
 			}
 		})
