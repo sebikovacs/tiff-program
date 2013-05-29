@@ -8671,3 +8671,18 @@ input {
     position: absolute;
     top: 150px;
     left: 250px; }
+
+@media -sass-debug-info{filename{}line{font-family:\00003114}}
+.dropdown-menu li {
+  position: relative; }
+@media -sass-debug-info{filename{}line{font-family:\00003117}}
+  .dropdown-menu li span.icon-remove-sign {
+    position: absolute;
+    right: 4px;
+    top: 5px;
+    color: #eebbbb;
+    font-size: 18px;
+    cursor: pointer; }
+@media -sass-debug-info{filename{}line{font-family:\00003125}}
+    .dropdown-menu li span.icon-remove-sign:hover {
+      color: #c46565; }

@@ -53,7 +53,15 @@ angular.module('app', [
 				$rootScope.fullProgram = $rootScope.program.content;
 			}
 		})
-
+		
+		$rootScope.RemoveFromFavorites = function (model) {
+			var index = $rootScope.favorites.indexOf(model);
+			console.log($rootScope.favorites);
+			$rootScope.favorites.splice(index, 1);
+			console.log($rootScope.favorites);
+			store.set('favmovies', $rootScope.favorites)
+			
+		}
 		
 		// safeApply to solve issues with calling $apply too early
 		$rootScope.SafeApply = function(fn) {

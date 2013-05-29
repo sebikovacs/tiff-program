@@ -51,7 +51,9 @@
 						    </a>
 						    <ul class="dropdown-menu">
 						      <li ng-repeat="movie in favorites">
-						      	<a href="#/day/{{movie.dayId}}/{{movie.td[1].a.href | movieTitle}}">{{movie.td[1].a.content}}</a></li>
+						      	<a href="#/day/{{movie.dayId}}/{{movie.td[1].a.href | movieTitle}}">{{movie.td[1].a.content}} </a> 
+						      	<span class="icon-remove-sign" ng-click="RemoveFromFavorites(movie)"></span>
+						      	</li>
 						    </ul>
 						</li>
 					</ul>
