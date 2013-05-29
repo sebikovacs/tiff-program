@@ -165,10 +165,13 @@ angular.module('app').controller('Day', [
 				$scope.AddFavorite = function (model) {
 					
 					// add movie to list
-					$rootScope.favorites.push(model);
+					if ($rootScope.favorites.indexOf(model) == -1) {
+						$rootScope.favorites.push(model);
+						
+						//save movie list to localstorage
+						store.set('favmovies', $rootScope.favorites);
+					}
 
-					//save movie list to localstorage
-					store.set('favmovies', $rootScope.favorites);
 
 					//change header badge color
 					$rootScope.showDefault = false;
