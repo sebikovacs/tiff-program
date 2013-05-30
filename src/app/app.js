@@ -12,7 +12,19 @@ angular.module('app', [
 	'$httpProvider',
 	function($routeProvider, $httpProvider) {
 		
-		var currentDay = 1;
+		var currentDay;
+		var d = new Date();
+		
+		var date = d.getDate();
+		var month = d.getMonth();
+		
+		if (month == 4) {
+			currentDay = 1;
+		} else if (month > 4 ) {
+			currentDay = date + 1;
+		} else if (month > 4 && date > 9) {
+			currentDay = 10;
+		}
 
 		// set up routes
 		$routeProvider.when('/dashboard', {
@@ -44,8 +56,8 @@ angular.module('app', [
 	'data',
 	function($rootScope, $location, $http, $compile, data) {
 
-		
-		$rootScope.program = data.GetTiffProgram();		
+		$rootScope.days = ['Vineri', 'Sambata', 'Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica'];
+		$rootScope.program = data.GetTiffProgram();
 		$rootScope.$watch('program.readyState', function () {
 			
 			if ($rootScope.program.readyState == 'complete') {
@@ -56,9 +68,9 @@ angular.module('app', [
 		
 		$rootScope.RemoveFromFavorites = function (model) {
 			var index = $rootScope.favorites.indexOf(model);
-			console.log($rootScope.favorites);
+			
 			$rootScope.favorites.splice(index, 1);
-			console.log($rootScope.favorites);
+			
 			store.set('favmovies', $rootScope.favorites)
 			
 		}

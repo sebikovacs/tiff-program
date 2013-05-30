@@ -32549,7 +32549,104 @@ Lawnchair.adapter('dom', (function() {
   })
 
 
-}(window.jQuery);/**
+}(window.jQuery);angular.module("ngLocale", [], ["$provide", function($provide) {
+var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
+$provide.value("$locale", {
+  "DATETIME_FORMATS": {
+    "AMPMS": {
+      "0": "AM",
+      "1": "PM"
+    },
+    "DAY": {
+      "0": "duminic\u0103",
+      "1": "luni",
+      "2": "mar\u021bi",
+      "3": "miercuri",
+      "4": "joi",
+      "5": "vineri",
+      "6": "s\u00e2mb\u0103t\u0103"
+    },
+    "MONTH": {
+      "0": "ianuarie",
+      "1": "februarie",
+      "2": "martie",
+      "3": "aprilie",
+      "4": "mai",
+      "5": "iunie",
+      "6": "iulie",
+      "7": "august",
+      "8": "septembrie",
+      "9": "octombrie",
+      "10": "noiembrie",
+      "11": "decembrie"
+    },
+    "SHORTDAY": {
+      "0": "Du",
+      "1": "Lu",
+      "2": "Ma",
+      "3": "Mi",
+      "4": "Jo",
+      "5": "Vi",
+      "6": "S\u00e2"
+    },
+    "SHORTMONTH": {
+      "0": "ian.",
+      "1": "feb.",
+      "2": "mar.",
+      "3": "apr.",
+      "4": "mai",
+      "5": "iun.",
+      "6": "iul.",
+      "7": "aug.",
+      "8": "sept.",
+      "9": "oct.",
+      "10": "nov.",
+      "11": "dec."
+    },
+    "fullDate": "EEEE, d MMMM y",
+    "longDate": "d MMMM y",
+    "medium": "dd.MM.yyyy HH:mm:ss",
+    "mediumDate": "dd.MM.yyyy",
+    "mediumTime": "HH:mm:ss",
+    "short": "dd.MM.yyyy HH:mm",
+    "shortDate": "dd.MM.yyyy",
+    "shortTime": "HH:mm"
+  },
+  "NUMBER_FORMATS": {
+    "CURRENCY_SYM": "RON",
+    "DECIMAL_SEP": ",",
+    "GROUP_SEP": ".",
+    "PATTERNS": {
+      "0": {
+        "gSize": 3,
+        "lgSize": 3,
+        "macFrac": 0,
+        "maxFrac": 3,
+        "minFrac": 0,
+        "minInt": 1,
+        "negPre": "-",
+        "negSuf": "",
+        "posPre": "",
+        "posSuf": ""
+      },
+      "1": {
+        "gSize": 3,
+        "lgSize": 3,
+        "macFrac": 0,
+        "maxFrac": 2,
+        "minFrac": 2,
+        "minInt": 1,
+        "negPre": "-",
+        "negSuf": "\u00a0\u00a4",
+        "posPre": "",
+        "posSuf": "\u00a0\u00a4"
+      }
+    }
+  },
+  "id": "ro",
+  "pluralCat": function (n) {  if (n == 1) {   return PLURAL_CATEGORY.ONE;  }  if (n == 0 || n != 1 && n == (n | 0) && n % 100 >= 1 && n % 100 <= 19) {   return PLURAL_CATEGORY.FEW;  }  return PLURAL_CATEGORY.OTHER;}
+});
+}]);/**
  * AngularUI - The companion suite for AngularJS
  * @version v0.4.0 - 2013-03-11
  * @link http://angular-ui.github.com
@@ -35716,7 +35813,19 @@ angular.module('app', [
 	'$httpProvider',
 	function($routeProvider, $httpProvider) {
 		
-		var currentDay = 1;
+		var currentDay;
+		var d = new Date();
+		
+		var date = d.getDate();
+		var month = d.getMonth();
+		
+		if (month == 4) {
+			currentDay = 1;
+		} else if (month > 4 ) {
+			currentDay = date + 1;
+		} else if (month > 4 && date > 9) {
+			currentDay = 10;
+		}
 
 		// set up routes
 		$routeProvider.when('/dashboard', {
@@ -35748,8 +35857,8 @@ angular.module('app', [
 	'data',
 	function($rootScope, $location, $http, $compile, data) {
 
-		
-		$rootScope.program = data.GetTiffProgram();		
+		$rootScope.days = ['Vineri', 'Sambata', 'Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica'];
+		$rootScope.program = data.GetTiffProgram();
 		$rootScope.$watch('program.readyState', function () {
 			
 			if ($rootScope.program.readyState == 'complete') {
@@ -35760,9 +35869,9 @@ angular.module('app', [
 		
 		$rootScope.RemoveFromFavorites = function (model) {
 			var index = $rootScope.favorites.indexOf(model);
-			console.log($rootScope.favorites);
+			
 			$rootScope.favorites.splice(index, 1);
-			console.log($rootScope.favorites);
+			
 			store.set('favmovies', $rootScope.favorites)
 			
 		}
@@ -35825,6 +35934,7 @@ angular.module('app').controller('Day', [
 	function($rootScope, $scope, $location, $routeParams, $filter, $compile, data) {
 		$scope.program = data.GetTiffProgram();		
 		$scope.showModal = false;
+		$scope.showNext = true;
 
 		$scope.$watch('program.readyState', function () {
 			
@@ -35832,7 +35942,26 @@ angular.module('app').controller('Day', [
 
 				$scope.fullProgram = $scope.program.content;
 
-				$scope.dayNo = $routeParams.dayId;
+				$scope.dayNo = parseInt($routeParams.dayId);
+
+				//hide next button
+				if ($scope.dayNo > 9) {
+					$scope.showNext = false					
+				}
+
+				// create timestamp for date
+				var d = new Date('31 May 2013');
+				
+
+				
+				if ($scope.dayNo == 1) {
+					$scope.timestamp = d.getTime();
+				} else if ($scope.dayNo > 1 ) {
+					$scope.timestamp = new Date(($scope.dayNo - 1) + ' June 2013').getTime();
+				}
+
+				console.log()
+
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
 

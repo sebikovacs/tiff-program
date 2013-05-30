@@ -12,6 +12,7 @@ angular.module('app').controller('Day', [
 	function($rootScope, $scope, $location, $routeParams, $filter, $compile, data) {
 		$scope.program = data.GetTiffProgram();		
 		$scope.showModal = false;
+		$scope.showNext = true;
 
 		$scope.$watch('program.readyState', function () {
 			
@@ -19,7 +20,26 @@ angular.module('app').controller('Day', [
 
 				$scope.fullProgram = $scope.program.content;
 
-				$scope.dayNo = $routeParams.dayId;
+				$scope.dayNo = parseInt($routeParams.dayId);
+
+				//hide next button
+				if ($scope.dayNo > 9) {
+					$scope.showNext = false					
+				}
+
+				// create timestamp for date
+				var d = new Date('31 May 2013');
+				
+
+				
+				if ($scope.dayNo == 1) {
+					$scope.timestamp = d.getTime();
+				} else if ($scope.dayNo > 1 ) {
+					$scope.timestamp = new Date(($scope.dayNo - 1) + ' June 2013').getTime();
+				}
+
+				console.log()
+
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
 

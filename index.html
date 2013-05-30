@@ -68,7 +68,7 @@
 		<div class="row-fluid">
 			<div class="span2 sidebar">
 				<ul class="nav nav-tabs nav-stacked">
-					<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}}</a></li>
+					<li ng-repeat="day in fullProgram"> <a href="#/day/{{day.id}}">{{day.div[0].div.p}} - <small>{{days[$index]}}</small></a> </li>
 				</ul>
 			</div>
 			<div ng-view class="span10"></div>

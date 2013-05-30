@@ -1,5 +1,6 @@
 		<h1>
-			Ziua {{dayNo}}
+			Ziua {{dayNo}} - <small><small>{{timestamp | date:'EEEE dd MMMM yyyy'}}</small> </small> 
+			<a class="next-day" href="#/day/{{dayNo + 1}}" ng-show="showNext">ziua urmatoare</a>
 		</h1>
 		<div class="row-fluid">
 			<div class="span4">

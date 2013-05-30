@@ -8690,3 +8690,7 @@ input {
 @media -sass-debug-info{filename{}line{font-family:\00003132}}
 .sidebar {
   padding: 30px 0 0; }
+
+@media -sass-debug-info{filename{}line{font-family:\00003136}}
+.next-day {
+  font-size: 12px; }
