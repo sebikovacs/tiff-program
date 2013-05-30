@@ -26,10 +26,14 @@ angular.module('app', [
 			currentDay = 10;
 		}
 
-		// set up routes
-		$routeProvider.when('/dashboard', {
-			templateUrl: 'partials/dashboard.html',
-			controller: 'Dashboard'
+		$routeProvider.when('/despre', {
+			templateUrl: 'partials/despre.html',
+			controller: 'Day'
+		});
+
+		$routeProvider.when('/contact', {
+			templateUrl: 'partials/contact.html',
+			controller: 'Day'
 		});
 
 		$routeProvider.when('/day/:dayId', {
