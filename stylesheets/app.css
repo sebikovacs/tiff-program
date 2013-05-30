@@ -8686,3 +8686,7 @@ input {
 @media -sass-debug-info{filename{}line{font-family:\00003125}}
     .dropdown-menu li span.icon-remove-sign:hover {
       color: #c46565; }
+
+@media -sass-debug-info{filename{}line{font-family:\00003132}}
+.sidebar {
+  padding: 30px 0 0; }
