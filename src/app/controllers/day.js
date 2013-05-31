@@ -38,7 +38,7 @@ angular.module('app').controller('Day', [
 					$scope.timestamp = new Date(($scope.dayNo - 1) + ' June 2013').getTime();
 				}
 
-				console.log()
+				
 
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
@@ -95,7 +95,28 @@ angular.module('app').controller('Day', [
 					simpleSheet: true
 				});
 				
+				$scope.detailsSpinner = true;
+				$scope.DisplayMovieDetails = function (model) {
+					
+					//get movie link
+					var link = model.td[1].a.href.split('/');
+					link = link[link.length - 1];
 
+					$scope.movieDetails = data.GetMovieDetails({
+						title: link
+					});
+
+					
+					$scope.$watch('movieDetails.readyState', function () {
+						if($scope.movieDetails.readyState == 'complete') {
+							//hide spinner
+							$scope.detailsSpinner = false;
+							console.log();
+							$scope.movieData = $scope.movieDetails.content.query.results.div.div;
+							console.log($scope.movieData)
+						}
+					})
+				};
 				
 				//Methods
 				$scope.ShowTrailer = function (model) {
@@ -106,6 +127,9 @@ angular.module('app').controller('Day', [
 					//local model
 					$scope.model = {};
 					$scope.model.title = model.td[1].a.content;
+
+					$scope.DisplayMovieDetails(model);
+					
 
 					//find the movie trailer in the google drive array
 					var title = model.td[1].a.content;
@@ -200,6 +224,8 @@ angular.module('app').controller('Day', [
 
 				// make the right column stick to header
 				$("#sticker").sticky({topSpacing:0});
+
+				
 			}
 		})
 	}

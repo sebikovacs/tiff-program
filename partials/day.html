@@ -31,6 +31,13 @@
 					<div class="video" ng-class="{true: 'show', false: 'hide'}[showVideo]">
 						<iframe wmode="transparent" width="640" height="360" src="http://www.youtube.com/embed/{{model.video}}" frameborder="0" allowfullscreen></iframe>
 					</div>
+					<div class="details">
+						<p><b>{{movieData[0].div[0].p}}</b> {{movieData[0].div[1].p}}</p>
+						<p><b>{{movieData[1].div[0].p}}</b> {{movieData[1].div[1].p}}</p>
+						<p><b>{{movieData[2].div[0].p}}</b> {{movieData[2].div[1].p}}</p>
+						<p><b>{{movieData[3].div[0].p}}</b> {{movieData[3].div[1].p}}</p>
+						<p><b>{{movieData[4].div[0].p}}</b> {{movieData[4].div[1].p.content}}</p>
+					</div>
 				</div>
 			</div>
 		</div>

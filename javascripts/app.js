@@ -35964,7 +35964,7 @@ angular.module('app').controller('Day', [
 					$scope.timestamp = new Date(($scope.dayNo - 1) + ' June 2013').getTime();
 				}
 
-				console.log()
+				
 
 				$scope.dayProgramRaw = $filter('filter')($scope.fullProgram, {id: $routeParams.dayId});
 				$scope.dayProgramTables = $scope.dayProgramRaw[0].div[1].table;
@@ -36021,7 +36021,28 @@ angular.module('app').controller('Day', [
 					simpleSheet: true
 				});
 				
+				$scope.detailsSpinner = true;
+				$scope.DisplayMovieDetails = function (model) {
+					
+					//get movie link
+					var link = model.td[1].a.href.split('/');
+					link = link[link.length - 1];
 
+					$scope.movieDetails = data.GetMovieDetails({
+						title: link
+					});
+
+					
+					$scope.$watch('movieDetails.readyState', function () {
+						if($scope.movieDetails.readyState == 'complete') {
+							//hide spinner
+							$scope.detailsSpinner = false;
+							console.log();
+							$scope.movieData = $scope.movieDetails.content.query.results.div.div;
+							console.log($scope.movieData)
+						}
+					})
+				};
 				
 				//Methods
 				$scope.ShowTrailer = function (model) {
@@ -36032,6 +36053,9 @@ angular.module('app').controller('Day', [
 					//local model
 					$scope.model = {};
 					$scope.model.title = model.td[1].a.content;
+
+					$scope.DisplayMovieDetails(model);
+					
 
 					//find the movie trailer in the google drive array
 					var title = model.td[1].a.content;
@@ -36126,6 +36150,8 @@ angular.module('app').controller('Day', [
 
 				// make the right column stick to header
 				$("#sticker").sticky({topSpacing:0});
+
+				
 			}
 		})
 	}
@@ -36220,10 +36246,39 @@ angular.module('app').factory('data', [
 		
 		};
 		
-		
+		var GetMovieDetails = function (params) {
+			var yql = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Ftiff.ro%2Ftiff%2Ffilm%2F'+ params.title +'%22%20and%20xpath%3D\'%2F%2F*%5Bcontains(%40class%2C%20%22node-film%22)%5D%2Fdiv%2Fdiv%5B2%5D%2Fdiv%5B2%5D\'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+
+
+			var results = {
+				readyState: 'loading',
+				content: []
+			}
+
+			var success = function (result) {
+				
+				results.content = result;
+				
+				results.readyState = 'complete';
+				$rootScope.$apply();
+			};
+			
+			$.ajax({
+			    dataType: "json",
+			    url: yql,
+			    success: success,
+			    error: function(response) {
+			        
+			    }
+			});
+			
+
+			return results;
+		}
 		
 		return {
-			GetTiffProgram: GetTiffProgram
+			GetTiffProgram: GetTiffProgram,
+			GetMovieDetails: GetMovieDetails
 		}
 		
 	}

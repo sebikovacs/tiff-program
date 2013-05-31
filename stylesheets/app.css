@@ -8661,21 +8661,22 @@ input {
 
 @media -sass-debug-info{filename{}line{font-family:\00003100}}
 #sticker {
-  right: 95px; }
+  right: 95px;
+  width: 720px; }
 
-@media -sass-debug-info{filename{}line{font-family:\00003104}}
+@media -sass-debug-info{filename{}line{font-family:\00003105}}
 .article {
   position: relative; }
-@media -sass-debug-info{filename{}line{font-family:\00003106}}
+@media -sass-debug-info{filename{}line{font-family:\00003107}}
   .article .small-loader, .article .loading-app:after {
     position: absolute;
     top: 150px;
     left: 250px; }
 
-@media -sass-debug-info{filename{}line{font-family:\00003114}}
+@media -sass-debug-info{filename{}line{font-family:\00003115}}
 .dropdown-menu li {
   position: relative; }
-@media -sass-debug-info{filename{}line{font-family:\00003117}}
+@media -sass-debug-info{filename{}line{font-family:\00003118}}
   .dropdown-menu li span.icon-remove-sign {
     position: absolute;
     right: 4px;
@@ -8683,14 +8684,14 @@ input {
     color: #eebbbb;
     font-size: 18px;
     cursor: pointer; }
-@media -sass-debug-info{filename{}line{font-family:\00003125}}
+@media -sass-debug-info{filename{}line{font-family:\00003126}}
     .dropdown-menu li span.icon-remove-sign:hover {
       color: #c46565; }
 
-@media -sass-debug-info{filename{}line{font-family:\00003132}}
+@media -sass-debug-info{filename{}line{font-family:\00003133}}
 .sidebar {
   padding: 30px 0 0; }
 
-@media -sass-debug-info{filename{}line{font-family:\00003136}}
+@media -sass-debug-info{filename{}line{font-family:\00003137}}
 .next-day {
   font-size: 12px; }
