@@ -3,10 +3,12 @@
 			<a class="next-day" href="#/day/{{dayNo + 1}}" ng-show="showNext">ziua urmatoare</a>
 		</h1>
 		<div class="row-fluid">
+			
 			<div class="span4">
 				<ul class="unstyled">
 					<li ng-repeat="table in dayProgramTables">
 						<h5>{{dayLocations[$index].p}}</h5>
+
 						<table>
 							<tr ng-repeat="row in table.tbody.tr">
 								<td>{{row.td[0].p}} </td>

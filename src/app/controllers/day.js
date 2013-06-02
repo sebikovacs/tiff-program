@@ -19,6 +19,7 @@ angular.module('app').controller('Day', [
 			if ($scope.program.readyState == 'complete') {
 
 				$scope.fullProgram = $scope.program.content;
+				$scope.showLoader = false;
 
 				$scope.dayNo = parseInt($routeParams.dayId);
 
@@ -111,9 +112,9 @@ angular.module('app').controller('Day', [
 						if($scope.movieDetails.readyState == 'complete') {
 							//hide spinner
 							$scope.detailsSpinner = false;
-							console.log();
+							
 							$scope.movieData = $scope.movieDetails.content.query.results.div.div;
-							console.log($scope.movieData)
+							
 						}
 					})
 				};
@@ -163,8 +164,7 @@ angular.module('app').controller('Day', [
 					}
 
 					
-					
-					
+	
 					//set default trailer to tiff 2013 clip
 					var trailertiff = '8Bsa8_IKa3o';
 					
@@ -176,7 +176,7 @@ angular.module('app').controller('Day', [
 					
 					//show trailer div
 					$scope.showModal = true;
-
+					$scope.showLoader = false;
 				}
 
 				if ($routeParams.movieTitle) {
