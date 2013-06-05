@@ -127,7 +127,7 @@ angular.module('app').controller('Day', [
 
 							$.getJSON(url, function (data) {
 								if(data.feed.entry){
-									console.log(data.feed.entry[0].title.$t)
+									
 									trailerCode.content.push(data.feed.entry[0].link[0].href.split('?')[1].split('&')[0].split('=')[1]);
 									
 								} else {
@@ -178,7 +178,7 @@ angular.module('app').controller('Day', [
 
 					$scope.DisplayMovieDetails(model);
 					$scope.model.video = $scope.GetYotubeTrailer(model);
-					console.log($scope.model.video);
+					
 
 					// //find the movie trailer in the google drive array
 					// var title = model.td[1].a.content;

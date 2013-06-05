@@ -86,7 +86,7 @@ angular.module('app').factory('data', [
 			}
 
 			var success = function (result) {
-				console.log('success getting original title');
+				
 
 				results.content = result;
 				
@@ -99,7 +99,7 @@ angular.module('app').factory('data', [
 			    url: yql,
 			    success: success,
 			    error: function(response) {
-			    	console.log('error getting original title');
+			    
 			    }
 			});
 			
