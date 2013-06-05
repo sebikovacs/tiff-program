@@ -9595,8 +9595,6 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 }
 
 })( window );
-;
-
 /*! jQuery UI - v1.10.2 - 2013-03-28
 * http://jqueryui.com
 * Includes: jquery.ui.core.js, jquery.ui.widget.js, jquery.ui.mouse.js, jquery.ui.sortable.js, jquery.ui.slider.js
@@ -12503,8 +12501,6 @@ $.widget( "ui.slider", $.ui.mouse, {
 });
 
 }(jQuery));
-;
-
 /**
  * @license AngularJS v1.1.3
  * (c) 2010-2012 Google, Inc. http://angularjs.org
@@ -27668,9 +27664,7 @@ var styleDirective = valueFn({
   });
 
 })(window, document);
-angular.element(document).find('head').append('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\\:form{display:block;}</style>');;
-
-/**
+angular.element(document).find('head').append('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\\:form{display:block;}</style>');/**
  * AngularUI - The companion suite for AngularJS
  * @version v0.4.0 - 2013-03-11
  * @link http://angular-ui.github.com
@@ -29142,8 +29136,6 @@ angular.module('ui.filters').filter('unique', function () {
     return items;
   };
 });
-;
-
 (function(global) {
   "use strict";
 
@@ -29557,9 +29549,7 @@ angular.module('ui.filters').filter('unique', function () {
     global.Tabletop = Tabletop;
   }
 
-})(this);;
-
-/**
+})(this);/**
  * Lawnchair!
  * --- 
  * clientside json store 
@@ -29709,9 +29699,7 @@ Lawnchair.prototype = {
         return this
     }
 // --
-};;
-
-/**
+};/**
  * indexed db adapter
  * === 
  * - originally authored by Vivian Li
@@ -30089,9 +30077,7 @@ Lawnchair.adapter('indexed-db', (function(){
     
   };
   
-})());;
-
-/**
+})());/**
  * dom storage adapter 
  * === 
  * - originally authored by Joseph Pecoraro
@@ -30296,8 +30282,6 @@ Lawnchair.adapter('dom', (function() {
             return this 
         }
 }})());
-;
-
 /* ===================================================
  * bootstrap-transition.js v2.3.0
  * http://twitter.github.com/bootstrap/javascript.html#transitions
@@ -32565,9 +32549,7 @@ Lawnchair.adapter('dom', (function() {
   })
 
 
-}(window.jQuery);;
-
-angular.module("ngLocale", [], ["$provide", function($provide) {
+}(window.jQuery);angular.module("ngLocale", [], ["$provide", function($provide) {
 var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
 $provide.value("$locale", {
   "DATETIME_FORMATS": {
@@ -32664,9 +32646,7 @@ $provide.value("$locale", {
   "id": "ro",
   "pluralCat": function (n) {  if (n == 1) {   return PLURAL_CATEGORY.ONE;  }  if (n == 0 || n != 1 && n == (n | 0) && n % 100 >= 1 && n % 100 <= 19) {   return PLURAL_CATEGORY.FEW;  }  return PLURAL_CATEGORY.OTHER;}
 });
-}]);;
-
-/**
+}]);/**
  * AngularUI - The companion suite for AngularJS
  * @version v0.4.0 - 2013-03-11
  * @link http://angular-ui.github.com
@@ -32724,9 +32704,7 @@ $provide.value("$locale", {
     }
   }
 
-})(window);;
-
-// Sticky Plugin v1.0.0 for jQuery
+})(window);// Sticky Plugin v1.0.0 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
@@ -32854,9 +32832,7 @@ $provide.value("$locale", {
   $(function() {
     setTimeout(scroller, 0);
   });
-})(jQuery);;
-
-(function() {
+})(jQuery);(function() {
   var WebSocket = window.WebSocket || window.MozWebSocket;
   var br = window.brunch || {};
   var ar = br['auto-reload'] || {};
@@ -32898,8 +32874,6 @@ $provide.value("$locale", {
     }
   };
 })();
-;
-
 /* Copyright (c) 2010-2012 Marcus Westin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33100,8 +33074,6 @@ $provide.value("$locale", {
 	else if (typeof define === 'function' && define.amd) { define(store) }
 	else { this.store = store }
 })();
-;
-
 angular.module("ui.bootstrap", ["ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.collapse","ui.bootstrap.dialog","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.popover","ui.bootstrap.tabs","ui.bootstrap.tooltip","ui.bootstrap.transition","ui.bootstrap.typeahead"]);
 
 angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
@@ -34601,9 +34573,7 @@ angular.module('ui.bootstrap.typeahead', [])
     return function(matchItem, query) {
       return (query) ? matchItem.replace(new RegExp(query, 'gi'), '<strong>$&</strong>') : query;
     };
-  });;
-
-// Underscore.js 1.4.4
+  });// Underscore.js 1.4.4
 // ===================
 
 // > http://underscorejs.org
@@ -35829,9 +35799,7 @@ angular.module('ui.bootstrap.typeahead', [])
 
   });
 
-}).call(this);;
-
-/*
+}).call(this);/*
  * App
  */
 
@@ -36055,6 +36023,50 @@ angular.module('app').controller('Day', [
 				});
 				
 				$scope.detailsSpinner = true;
+
+				$scope.GetYotubeTrailer = function(model){
+					//get movie link
+					var link = model.td[1].a.href.split('/'),
+						trailerCode = {
+							readyState: 'loading',
+							content: []
+						};
+					
+					link = link[link.length - 1];
+
+					$scope.originalTitle = data.GetMovieOriginalTitle({
+						title: link
+					});
+
+					
+					$scope.$watch('originalTitle.readyState', function () {
+						
+						if($scope.originalTitle.readyState == 'complete') {
+
+							var vq = $scope.originalTitle.content.query.results.div.p;
+							vq = vq.split('(')[0];
+
+							var url = 'http://gdata.youtube.com/feeds/videos?vq=' + vq + 
+							       '&max-results=8&alt=json-in-script&' + 
+							       'callback=?&orderby=relevance&' + 
+							       'sortorder=descending&format=5&fmt=18'
+
+							$.getJSON(url, function (data) {
+								if(data.feed.entry){
+									console.log(data.feed.entry[0].title.$t)
+									trailerCode.content.push(data.feed.entry[0].link[0].href.split('?')[1].split('&')[0].split('=')[1]);
+									
+								} else {
+									trailerCode.content.push('8Bsa8_IKa3o');
+								}
+								$scope.$apply();
+							})
+						}
+					})
+
+					return trailerCode;
+				}
+
 				$scope.DisplayMovieDetails = function (model) {
 					
 					//get movie link
@@ -36075,6 +36087,9 @@ angular.module('app').controller('Day', [
 							
 						}
 					})
+
+					
+
 				};
 				
 				//Methods
@@ -36088,49 +36103,50 @@ angular.module('app').controller('Day', [
 					$scope.model.title = model.td[1].a.content;
 
 					$scope.DisplayMovieDetails(model);
+					$scope.model.video = $scope.GetYotubeTrailer(model);
+					console.log($scope.model.video);
+
+					// //find the movie trailer in the google drive array
+					// var title = model.td[1].a.content;
+					// var trailer = _.where($scope.trailers.content, {titlero: title});
 					
+					// if ($scope.trailers.content.length == 0) {
+					// 	//hide video and show loader
+					// 	$scope.showLoader = true;
+					// 	$scope.showVideo = false;
 
-					//find the movie trailer in the google drive array
-					var title = model.td[1].a.content;
-					var trailer = _.where($scope.trailers.content, {titlero: title});
-					
-					if ($scope.trailers.content.length == 0) {
-						//hide video and show loader
-						$scope.showLoader = true;
-						$scope.showVideo = false;
+					// 	$scope.$watch('trailers.readyState', function () {
+					// 		if ($scope.trailers.readyState == 'complete') {
+					// 			var trailer = _.where($scope.trailers.content, {titlero: title});
 
-						$scope.$watch('trailers.readyState', function () {
-							if ($scope.trailers.readyState == 'complete') {
-								var trailer = _.where($scope.trailers.content, {titlero: title});
-
-								//set default trailer to tiff 2013 clip
-								var trailertiff = '8Bsa8_IKa3o';
+					// 			//set default trailer to tiff 2013 clip
+					// 			var trailertiff = '8Bsa8_IKa3o';
 								
-								if (trailer.length > 0){
-									$scope.model.video = trailer[0].video;
-								} else {
-									$scope.model.video = trailertiff;
-								}
+					// 			if (trailer.length > 0){
+					// 				$scope.model.video = trailer[0].video;
+					// 			} else {
+					// 				$scope.model.video = trailertiff;
+					// 			}
 
-								$scope.showLoader = false;
-								$scope.showVideo = true;
+					// 			$scope.showLoader = false;
+					// 			$scope.showVideo = true;
 
-							}
-						});
-					} else {
-						var trailer = _.where($scope.trailers.content, {titlero: title});
-					}
+					// 		}
+					// 	});
+					// } else {
+					// 	var trailer = _.where($scope.trailers.content, {titlero: title});
+					// }
 
 					
 	
-					//set default trailer to tiff 2013 clip
-					var trailertiff = '8Bsa8_IKa3o';
+					// //set default trailer to tiff 2013 clip
+					// var trailertiff = '8Bsa8_IKa3o';
 					
-					if (trailer.length > 0){
-						$scope.model.video = trailer[0].video;
-					} else {
-						$scope.model.video = trailertiff;
-					}
+					// if (trailer.length > 0){
+					// 	$scope.model.video = trailer[0].video;
+					// } else {
+					// 	$scope.model.video = trailertiff;
+					// }
 					
 					//show trailer div
 					$scope.showModal = true;
@@ -36307,10 +36323,42 @@ angular.module('app').factory('data', [
 
 			return results;
 		}
+
+		var GetMovieOriginalTitle = function (params) {
+			var yql = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Ftiff.ro%2Ftiff%2Ffilm%2F' + params.title + '%22%20and%20xpath%3D\'%2F%2F*%2F%2F*%5Bcontains(%40class%2C%20%22original%22)%5D\'&format=json&diagnostics=true';
+
+
+			var results = {
+				readyState: 'loading',
+				content: []
+			}
+
+			var success = function (result) {
+				console.log('success getting original title');
+
+				results.content = result;
+				
+				results.readyState = 'complete';
+				$rootScope.$apply();
+			};
+			
+			$.ajax({
+			    dataType: "json",
+			    url: yql,
+			    success: success,
+			    error: function(response) {
+			    	console.log('error getting original title');
+			    }
+			});
+			
+
+			return results;
+		}
 		
 		return {
 			GetTiffProgram: GetTiffProgram,
-			GetMovieDetails: GetMovieDetails
+			GetMovieDetails: GetMovieDetails,
+			GetMovieOriginalTitle: GetMovieOriginalTitle
 		}
 		
 	}

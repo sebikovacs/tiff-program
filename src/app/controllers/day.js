@@ -97,6 +97,50 @@ angular.module('app').controller('Day', [
 				});
 				
 				$scope.detailsSpinner = true;
+
+				$scope.GetYotubeTrailer = function(model){
+					//get movie link
+					var link = model.td[1].a.href.split('/'),
+						trailerCode = {
+							readyState: 'loading',
+							content: []
+						};
+					
+					link = link[link.length - 1];
+
+					$scope.originalTitle = data.GetMovieOriginalTitle({
+						title: link
+					});
+
+					
+					$scope.$watch('originalTitle.readyState', function () {
+						
+						if($scope.originalTitle.readyState == 'complete') {
+
+							var vq = $scope.originalTitle.content.query.results.div.p;
+							vq = vq.split('(')[0];
+
+							var url = 'http://gdata.youtube.com/feeds/videos?vq=' + vq + 
+							       '&max-results=8&alt=json-in-script&' + 
+							       'callback=?&orderby=relevance&' + 
+							       'sortorder=descending&format=5&fmt=18'
+
+							$.getJSON(url, function (data) {
+								if(data.feed.entry){
+									console.log(data.feed.entry[0].title.$t)
+									trailerCode.content.push(data.feed.entry[0].link[0].href.split('?')[1].split('&')[0].split('=')[1]);
+									
+								} else {
+									trailerCode.content.push('8Bsa8_IKa3o');
+								}
+								$scope.$apply();
+							})
+						}
+					})
+
+					return trailerCode;
+				}
+
 				$scope.DisplayMovieDetails = function (model) {
 					
 					//get movie link
@@ -117,6 +161,9 @@ angular.module('app').controller('Day', [
 							
 						}
 					})
+
+					
+
 				};
 				
 				//Methods
@@ -130,49 +177,50 @@ angular.module('app').controller('Day', [
 					$scope.model.title = model.td[1].a.content;
 
 					$scope.DisplayMovieDetails(model);
+					$scope.model.video = $scope.GetYotubeTrailer(model);
+					console.log($scope.model.video);
+
+					// //find the movie trailer in the google drive array
+					// var title = model.td[1].a.content;
+					// var trailer = _.where($scope.trailers.content, {titlero: title});
 					
+					// if ($scope.trailers.content.length == 0) {
+					// 	//hide video and show loader
+					// 	$scope.showLoader = true;
+					// 	$scope.showVideo = false;
 
-					//find the movie trailer in the google drive array
-					var title = model.td[1].a.content;
-					var trailer = _.where($scope.trailers.content, {titlero: title});
-					
-					if ($scope.trailers.content.length == 0) {
-						//hide video and show loader
-						$scope.showLoader = true;
-						$scope.showVideo = false;
+					// 	$scope.$watch('trailers.readyState', function () {
+					// 		if ($scope.trailers.readyState == 'complete') {
+					// 			var trailer = _.where($scope.trailers.content, {titlero: title});
 
-						$scope.$watch('trailers.readyState', function () {
-							if ($scope.trailers.readyState == 'complete') {
-								var trailer = _.where($scope.trailers.content, {titlero: title});
-
-								//set default trailer to tiff 2013 clip
-								var trailertiff = '8Bsa8_IKa3o';
+					// 			//set default trailer to tiff 2013 clip
+					// 			var trailertiff = '8Bsa8_IKa3o';
 								
-								if (trailer.length > 0){
-									$scope.model.video = trailer[0].video;
-								} else {
-									$scope.model.video = trailertiff;
-								}
+					// 			if (trailer.length > 0){
+					// 				$scope.model.video = trailer[0].video;
+					// 			} else {
+					// 				$scope.model.video = trailertiff;
+					// 			}
 
-								$scope.showLoader = false;
-								$scope.showVideo = true;
+					// 			$scope.showLoader = false;
+					// 			$scope.showVideo = true;
 
-							}
-						});
-					} else {
-						var trailer = _.where($scope.trailers.content, {titlero: title});
-					}
+					// 		}
+					// 	});
+					// } else {
+					// 	var trailer = _.where($scope.trailers.content, {titlero: title});
+					// }
 
 					
 	
-					//set default trailer to tiff 2013 clip
-					var trailertiff = '8Bsa8_IKa3o';
+					// //set default trailer to tiff 2013 clip
+					// var trailertiff = '8Bsa8_IKa3o';
 					
-					if (trailer.length > 0){
-						$scope.model.video = trailer[0].video;
-					} else {
-						$scope.model.video = trailertiff;
-					}
+					// if (trailer.length > 0){
+					// 	$scope.model.video = trailer[0].video;
+					// } else {
+					// 	$scope.model.video = trailertiff;
+					// }
 					
 					//show trailer div
 					$scope.showModal = true;
