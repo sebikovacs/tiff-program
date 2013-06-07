@@ -36025,6 +36025,7 @@ angular.module('app').controller('Day', [
 				$scope.detailsSpinner = true;
 
 				$scope.GetYotubeTrailer = function(model){
+
 					//get movie link
 					var link = model.td[1].a.href.split('/'),
 						trailerCode = {
@@ -36044,7 +36045,7 @@ angular.module('app').controller('Day', [
 						if($scope.originalTitle.readyState == 'complete') {
 
 							var vq = $scope.originalTitle.content.query.results.div.p;
-							vq = vq.split('(')[0];
+							vq = vq.split('(')[0]  + ' trailer';
 
 							var url = 'http://gdata.youtube.com/feeds/videos?vq=' + vq + 
 							       '&max-results=8&alt=json-in-script&' + 
